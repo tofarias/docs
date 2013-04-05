@@ -10,8 +10,6 @@
 
 Laravel oferece uma API unificada para vários sistemas de cache diferentes. A configuração de cache está localizada em `app/config/cache.php`. Nesse arquivo você pode escificar qual driver você quer usar por padrão na sua aplicação. Laravel também suporta os populares sistemas de cache como o [Memcached](http://memcached.org) e [Redis](http://redis.io).
 
-The cache configuration file also contains various other options, which are documented within the file, so make sure to read over these options. By default, Laravel is configured to use the `file` cache driver, which stores the serialized, cached objects in the filesystem. For larger applications, it is recommended that you use an in-memory cache such as Memcached or APC.
-
 O arquivo de configuração do cache também contém várias outras opções, que são documentadas no próprio arquivo, por isso certifique-se de ler sobre essas opções. Por padrão, o Laravel está configurado para usar o driver `file` de cache, que armazena os objetos serializados em cache no sistema de arquivos. Para aplicações maiores, recomenda-se o uso de um cache em memória, tais como Memcached ou APC.
 
 <a name="cache-usage"></a>
@@ -21,7 +19,7 @@ O arquivo de configuração do cache também contém várias outras opções, qu
 
 	Cache::put('key', 'value', $minutes);
 
-**Guardando um item em cache se ele não existe**
+**Guardando um item em cache caso ele não exista**
 
 	Cache::add('key', 'value', $minutes);
 
@@ -54,7 +52,7 @@ Você também pode combinar os métodos `remember` e `forever`:
 		return DB::table('users')->get();
 	});
 
-Note que todos os itens guardados em cache são serializados, isso significa que você pode serializar todo o tipo de dado.
+Note que todos os itens guardados em cache são serializados, isso significa que você pode guardar todo o tipo de dado.
 
 **Removendo um item da Cache**
 
@@ -62,7 +60,7 @@ Note que todos os itens guardados em cache são serializados, isso significa que
 
 <a name="increments-and-decrements"></a>
 
-Todos os drivers com excessão de `file` e `database` suportam as operações `increment` and `decrement`:
+Todos os drivers com excessão de `file` e `database` suportam as operações `increment` e `decrement`:
 
 **Incrementando um valor**
 
