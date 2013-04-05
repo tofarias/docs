@@ -25,7 +25,7 @@ Note que o estilo de sintaxe "ponto" pode ser usado para acessar valores em vár
 
 Muitas vezes é útil ter valores diferentes com base no ambiente onde o aplicativo é executado. Por exemplo, você pode querer usar um drive de cache em sua maquina de desenvolvimento local diferente do drive usado em seu servidor de produção. É fácil fazer isto usando configuração baseada no ambiente.
 
-Simplesmente crie uma pasta dentro do diretório `config` que corresponde ao seu nome do ambiente, por exemplo `local`. Em seguida, crie os arquivos de configuração que você deseja sobrescrever e especifique as opções para este ambiente. Por exemplo, para sobrescrever o driver de cache para seu ambiente local, você poderia criar um arquivo `cache.php` em `app/config/local` com o seguinte conteúdo:
+Simplesmente crie uma pasta dentro do diretório `config` que corresponde ao seu nome de ambiente, por exemplo `local`. Em seguida, crie os arquivos de configuração que você deseja sobrescrever e especifique as opções para este ambiente. Por exemplo, para sobrescrever o driver de cache para seu ambiente local, você poderia criar um arquivo `cache.php` em `app/config/local` com o seguinte conteúdo:
 
 	<?php
 
