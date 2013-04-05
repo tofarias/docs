@@ -1,8 +1,8 @@
 - Preface
-    - [Introduction](/docs/introduction)
+    - [Introdução](/docs/introduction)
     - [Contributing](/docs/contributing)
 - Getting Started
-    - [Installation](/docs/installation)
+    - [Instalação](/docs/installation)
     - [Configuration](/docs/configuration)
     - [Request Lifecycle](/docs/lifecycle)
     - [Routing](/docs/routing)
@@ -18,7 +18,7 @@
     - [Localization](/docs/localization)
     - [Mail](/docs/mail)
     - [Package Development](/docs/packages)
-    - [Pagination](/docs/pagination)
+    - [Paginação](/docs/pagination)
     - [Queues](/docs/queues)
     - [Security](/docs/security)
     - [Session](/docs/session)
@@ -33,5 +33,5 @@
     - [Migrations & Seeding](/docs/migrations)
     - [Redis](/docs/redis)
 - Artisan CLI
-    - [Overview](/docs/artisan)
+    - [Visão geral](/docs/artisan)
     - [Development](/docs/commands)
