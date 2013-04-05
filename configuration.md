@@ -25,7 +25,7 @@ Note que o estilo de sintaxe "ponto" pode ser usado para acessar valores em vár
 
 Muitas vezes é útil ter valores diferentes com base no ambiente onde o aplicativo é executado. Por exemplo, você pode querer usar um drive de cache em sua maquina de desenvolvimento local diferente do drive usado em seu servidor de produção. É fácil fazer isto usando configuração baseada no ambiente.
 
-Simplismente crie uma pasta dentro do diretório `config` que corresponde ao seu nome de ambiente, por exemplo `local`. Em seguida, crie os arquivos de configuração que você deseja sobrescrever e especifique as opções para este ambiente. Por exemplo, para sobrescrever o driver de cache para seu ambiente local, você poderia criar um arquivo `cache.php` em `app/config/local` com o seguinte conteúdo:
+Simplesmente crie uma pasta dentro do diretório `config` que corresponde ao seu nome do ambiente, por exemplo `local`. Em seguida, crie os arquivos de configuração que você deseja sobrescrever e especifique as opções para este ambiente. Por exemplo, para sobrescrever o driver de cache para seu ambiente local, você poderia criar um arquivo `cache.php` em `app/config/local` com o seguinte conteúdo:
 
 	<?php
 
@@ -37,7 +37,7 @@ Simplismente crie uma pasta dentro do diretório `config` que corresponde ao seu
 
 > **Note:** Não use 'testing' como um nome de ambiente. Esta é reservada para testes de unidade.
 
-Observe que você não precisa especificar a opção _every_ que esta no arquivo base de configuração, mas somente as opções que você deseja sobrescrever. The environment configuration files will "cascade" over the base files.
+Observe que você não precisa especificar a opção _every_ que esta no arquivo base de configuração, mas somente as opções que você deseja sobrescrever. As configurações de ambiente serão "cascateadas" sobre os arquivos base.
 
 Em seguida, nós precisamos instruir o framework como detectar em qual ambiente ele será executado. O ambiente padrão é sempre `production`. Todavia, você pode definir outro ambiente no arquivo `bootstrap/start.php` na raiz de sua instalação. Neste arquivo você encontrará uma chamada para `$app->detectEnvironment`. O array passado para este método é usado para determinar o ambiente atual. Você pode adicionar outros ambientes e nomes de maquina para o array conforme precisar.
 
