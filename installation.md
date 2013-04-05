@@ -16,7 +16,7 @@ Laravel utiliza o [Composer](http://getcomposer.org) para gerenciar suas depend�
 
 Once Composer is installed, download the [latest version](https://github.com/laravel/laravel/archive/develop.zip) of the Laravel framework and extract its contents into a directory on your server. Next, in the root of your Laravel application, run the `php composer.phar install` command to install all of the framework's dependencies. This process requires Git to be installed on the server to successfully complete the installation.
 
-Com o Composer instalado, baixe a [última versão](https://github.com/laravel/laravel/archive/develop.zip) do Laravel e extraia seu conteúdo em uma pasta no seu servidor. A seguirt, na raíz da sua aplicação, 
+Com o Composer instalado, baixe a [última versão](https://github.com/laravel/laravel/archive/develop.zip) do Laravel e extraia seu conteúdo em uma pasta no seu servidor. A seguir, na raíz da sua aplicação, 
 
 <a name="server-requirements"></a>
 ## Requisitos do Servidor
