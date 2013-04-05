@@ -49,15 +49,15 @@ Em seguida, nós precisamos instruir o framework como detectar em qual ambiente 
 
     ));
 
-You may also pass a `Closure` to the `detectEnvironment` method, allowing you to implement your own environment detection:
+Você também pode passar uma `Closure` para o método `detectEnvironment`, permitindo que você implemente sua própria detecção de ambiente:
 
 	$env = $app->detectEnvironmnet(function()
 	{
 		return $_SERVER['MY_LARAVEL_ENV'];
 	});
 
-You may access the current application environment via the `environment` method:
+Você pode acessar o ambiente atual da aplicação pelo método `environment`:
 
-**Accessing The Current Application Environment**
+**Acessando o ambiente atual da aplicação**
 
 	$environment = App::environment();
