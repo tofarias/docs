@@ -12,62 +12,65 @@ Laravel oferece uma API unificada para vários sistemas de cache diferentes. A c
 
 The cache configuration file also contains various other options, which are documented within the file, so make sure to read over these options. By default, Laravel is configured to use the `file` cache driver, which stores the serialized, cached objects in the filesystem. For larger applications, it is recommended that you use an in-memory cache such as Memcached or APC.
 
-<a name="cache-usage"></a>
-## Cache Usage
+O arquivo de configuração do cache também contém várias outras opções, que são documentadas no próprio arquivo, por isso certifique-se de ler sobre essas opções. Por padrão, o Laravel está configurado para usar o driver `file` de cache, que armazena os objetos serializados em cache no sistema de arquivos. Para aplicações maiores, recomenda-se o uso de um cache em memória, tais como Memcached ou APC.
 
-**Storing An Item In The Cache**
+<a name="cache-usage"></a>
+## Modo de usar
+
+**Guardando um item em cache**
 
 	Cache::put('key', 'value', $minutes);
 
-**Storing An Item In The Cache If It Doesn't Exist**
+**Guardando um item em cache se ele não existe**
 
 	Cache::add('key', 'value', $minutes);
 
-**Retrieving An Item From The Cache**
+**Buscando um item da Cache**
 
 	$value = Cache::get('key');
 
-**Retrieving An Item Or Returning A Default Value**
+**Buscando um item da cache, ou retornando um valor padrão caso ele não exista**
 
 	$value = Cache::get('key', 'default');
 
 	$value = Cache::get('key', function() { return 'default'; });
 
-**Storing An Item In The Cache Permanently**
+**Guardando um item em cache permanentemente**
 
 	Cache::forever('key', 'value');
 
-Sometimes you may wish to retrieve an item from the cache, but also store a default value if the requested item doesn't exist. You may do this using the `Cache::remember` method:
+Pode ser que você queira buscar um item da cache, mas também, salvar um valor padrão caso o item procurado não exista.
+Você pode fazer isso usando o método `Cache::remember`:
 
 	$value = Cache::remember('users', $minutes, function()
 	{
 		return DB::table('users')->get();
 	});
 
-You may also combine the `remember` and `forever` methods:
+Você também pode combinar os métodos `remember` e `forever`:
 
 	$value = Cache::rememberForever('users', function()
 	{
 		return DB::table('users')->get();
 	});
 
-Note that all items stored in the cache are serialized, so you are free to store any type of data.
+Note que todos os itens guardados em cache são serializados, isso significa que você pode serializar todo o tipo de dado.
 
-**Removing An Item From The Cache**
+**Removendo um item da Cache**
 
 	Cache::forget('key');
 
 <a name="increments-and-decrements"></a>
 
-All drivers except `file` and `database` support the `increment` and `decrement` operations:
+Todos os drivers com excessão de `file` e `database` suportam as operações `increment` and `decrement`:
 
-**Incrementing A Value**
+**Incrementando um valor**
 
 	Cache::increment('key');
 
 	Cache::increment('key', $amount);
 
-**Decrementing A Value**
+**Decrementando um valor**
 
 	Cache::decrement('key');
 
@@ -76,7 +79,7 @@ All drivers except `file` and `database` support the `increment` and `decrement`
 <a name="database-cache"></a>
 ## Database Cache
 
-When using the `database` cache driver, you will need to setup a table to contain the cache items. Below is an example `Schema` declaration for the table:
+Quando estiver usando driver `database`, você precisará configurar uma tabela que receberá os itens. Abaixo um exemplo de um `Schema` para a tabela:
 
 	Schema::create('cache', function($t)
 	{
