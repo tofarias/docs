@@ -7,7 +7,7 @@
 <a name="configuration"></a>
 ## Configuração
 
-Laravel provê uma API limpa e simples sobre a popular biblioteca [SwiftMailer](http://swiftmailer.org). O arquivo de configuração de email é `app/config/mail.php`, e contém opções que lhe permitem alterar seu servidor SMTP, porta, e credenciais, bem como definir um endereço global `from` para todas as mensagens entregues pela biblioteca. Você pode usar o servidor SMTP que desejar. Se você deseja usar a função `mail` do PHP para enviar email, você pode mudar o `driver` para `mail` no arquivo de configuração.
+Laravel oferece uma API limpa e simples sobre a popular biblioteca [SwiftMailer](http://swiftmailer.org). O arquivo de configuração de email é `app/config/mail.php`, e contém opções que lhe permitem alterar seu servidor SMTP, porta, e credenciais, bem como definir um endereço global `from` para todas as mensagens entregues pela biblioteca. Você pode usar o servidor SMTP que desejar. Se você deseja usar a função `mail` do PHP para enviar email, você pode mudar o `driver` para `mail` no arquivo de configuração.
 
 <a name="basic-usage"></a>
 ## Uso básico
