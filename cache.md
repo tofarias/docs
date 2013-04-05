@@ -1,14 +1,14 @@
 # Cache
 
-- [Configuration](#configuration)
-- [Cache Usage](#cache-usage)
-- [Increments & Decrements](#increments-and-decrements)
+- [Configuração](#configuration)
+- [Modo de usar](#cache-usage)
+- [Incrementos & Decrementos](#increments-and-decrements)
 - [Database Cache](#database-cache)
 
 <a name="configuration"></a>
-## Configuration
+## Configuração
 
-Laravel provides a unified API for various caching systems. The cache configuration is located at `app/config/cache.php`. In this file you may specify which cache driver you would like used by default throughout your application. Laravel supports popular caching backends like [Memcached](http://memcached.org) and [Redis](http://redis.io) out of the box.
+Laravel oferece uma API unificada para vários sistemas de cache diferentes. A configuração de cache está localizada em `app/config/cache.php`. Nesse arquivo você pode escificar qual driver você quer usar por padrão na sua aplicação. Laravel também suporta os populares sistemas de cache como o [Memcached](http://memcached.org) e [Redis](http://redis.io).
 
 The cache configuration file also contains various other options, which are documented within the file, so make sure to read over these options. By default, Laravel is configured to use the `file` cache driver, which stores the serialized, cached objects in the filesystem. For larger applications, it is recommended that you use an in-memory cache such as Memcached or APC.
 
