@@ -3,7 +3,7 @@
     - [Contributing](/docs/contributing)
 - Getting Started
     - [Instalação](/docs/installation)
-    - [Configuration](/docs/configuration)
+    - [Configuração](/docs/configuration)
     - [Request Lifecycle](/docs/lifecycle)
     - [Routing](/docs/routing)
     - [Requests & Input](/docs/requests)
