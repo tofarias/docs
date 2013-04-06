@@ -52,19 +52,19 @@ Você pode acessar o nome da ação do controlador que está sendo executado com
 	$action = Route::currentRouteAction();
 
 <a name="controller-filters"></a>
-## Controller Filters
+## Filtros de Controladores
 
-[Filters](/docs/routing#route-filters) may be specified on controller routes similar to "regular" routes:
+Os [filtros](/docs/routing#route-filters) podem ser especificados em rotas controladoras semelhantes às rotas regulares:
 
 	Route::get('profile', array('before' => 'auth',
 				'uses' => 'UserController@showProfile'));
 
-However, you may also specify filters from within your controller:
+No entanto, você também pode especificar filtros de dentro de seu controlador:
 
 	class UserController extends BaseController {
 
 		/**
-		 * Instantiate a new UserController instance.
+		 * Instanciar uma nova instância de UserController.
 		 */
 		public function __construct()
 		{
@@ -78,12 +78,12 @@ However, you may also specify filters from within your controller:
 
 	}
 
-You may also specify controller filters inline using a Closure:
+Você também pode especificar filtros de controladorers usando funções anônimas (Closures):
 
 	class UserController extends BaseController {
 
 		/**
-		 * Instantiate a new UserController instance.
+		 * Instanciar uma nova instância de UserController.
 		 */
 		public function __construct()
 		{
