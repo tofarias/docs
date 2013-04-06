@@ -1,24 +1,25 @@
-# Controllers
+# Controladores
 
-- [Basic Controllers](#basic-controllers)
-- [Controller Filters](#controller-filters)
-- [RESTful Controllers](#restful-controllers)
-- [Resource Controllers](#resource-controllers)
-- [Handling Missing Methods](#handling-missing-methods)
+- [Controladores Básicos](#basic-controllers)
+- [Filtros de Controladores](#controller-filters)
+- [Controladores RESTful](#restful-controllers)
+- [Controladores de Recursos](#resource-controllers)
+- [Manipulação de Métodos Ausentes](#handling-missing-methods)
 
 <a name="basic-controllers"></a>
-## Basic Controllers
+## Controladores Básicos
 
-Instead of defining all of your route-level logic in a single `routes.php` file, you may wish to organize this behavior using Controller classes. Controllers can group related route logic into a class, as well as take advantage of more advanced framework features such as automatic [dependency injection](/docs/ioc).
+Em vez de definir toda a sua lógica de rotas no arquivo de `routes.php`, você pode querer organizar este comportamento usando classes Controladores. Controladores podem agrupar a lógica relacionada a rota em uma classe, além de tirar vantagem de recursos mais avançados em Laravel, tais como [injeção de dependência](/docs/ioc) automática.
 
-Controllers are typically stored in the `app/controllers` directory, and this directory is registered in the `classmap` option of your `composer.json` file by default.
+Os controladores são normalmente armazenados no diretório `app/controllers`, e este diretório já vem predefinidp na opção `classmap` de seu arquivo `composer.json`.
 
-Here is an example of a basic controller class:
+Abaixo segue um exemplo de uma classe de Controlador Básico:
+
 
 	class UserController extends BaseController {
 
 		/**
-		 * Show the profile for the given user.
+		 * Mostrar o perfil de um usuário.
 		 */
 		public function showProfile($id)
 		{
@@ -29,24 +30,24 @@ Here is an example of a basic controller class:
 
 	}
 
-All controllers should extend the `BaseController` class. The `BaseController` is also stored in the `app/controllers` directory, and may be used as a place to put shared controller logic. The `BaseController` extends the framework's `Controller` class. Now, We can route to this controller action like so:
+Todos controladores deve extender a classe `BaseController`. O `BaseController` é armazenado no diretório `app/controllers`, onde a lógica compartilhada em controladores pode ser colocada. A classe `BaseController` extende a classe `Controller` da framework. Agora podemos encaminhar a ação do controlador:
 
 	Route::get('user/{id}', 'UserController@showProfile');
 
-If you choose to nest or organize your controller using PHP namespaces, simply use the fully qualified class name when defining the route:
+Se você escolher organizar seu controlador usando PHP namespaces, basta usar o nome da classe com o namespace correspondente para definir a rota:
 
 	Route::get('foo', 'Namespace\FooController@method');
 
-You may also specify names on controller routes:
+Você também pode especificar nomes em rotas de controlador:
 
 	Route::get('foo', array('uses' => 'FooController@method',
 											'as' => 'name'));
 
-To generate a URL to a controller action, you may use the `URL::action` method:
+Para gerar uma URL para uma ação de controlador, você pode usar o método `URL::action`:
 
 	$url = URL::action('FooController@method');
 
-You may access the name of the controller action being run using the `currentRouteAction` method:
+Você pode acessar o nome da ação do controlador que está sendo executado com o método `currentRouteAction`:
 
 	$action = Route::currentRouteAction();
 
