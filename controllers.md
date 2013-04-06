@@ -96,15 +96,16 @@ Você também pode especificar filtros de controladorers usando funções anôni
 	}
 
 <a name="restful-controllers"></a>
-## RESTful Controllers
+## Controladores RESTful
 
-Laravel allows you to easily define a single route to handle every action in a controller using simple, REST naming conventions. First, define the route using the `Route::controller` method:
+Laravel permite que você facilmente defina uma única rota para lidar com cada ação em um controlador usando simples, convenções de nomenclatura de REST. Primeiro defina uma rota usando o método `Route::controller`:
 
-**Defining A RESTful Controller**
+
+**Definindo um Controlador RESTful**
 
 	Route::controller('users', 'UserController');
 
-The `controller` method accepts two arguments. The first is the base URI the controller handles, while the second is the class name of the controller. Next, just add methods to your controller, prefixed with the HTTP verb they respond to:
+O método `controller` aceita dois argumentos. O primeiro é a URI base que controlador manipula, enquanto o segundo é o nome da classe do controlador. Em seguida, basta adicionar métodos em seu controlador, prefixado com o verbo HTTP que eles respondem:
 
 	class UserController extends BaseController {
 
@@ -120,9 +121,10 @@ The `controller` method accepts two arguments. The first is the base URI the con
 
 	}
 
-The `index` methods will respond to the root URI handled by the controller, which, in this case, is `users`.
+O método `index` irá responder ao URI raiz implementado pelo controlador que, neste caso, é `users`.
 
 If your controller action contains multiple words, you may access the action using "dash" syntax in the URI. For example, the following controller action on our `UserController` would respond to the `users/admin-profile` URI:
+Se a ação do sue controlador contém múltiplas palavras, você pode acessar a ação usando traços na sintaxe na URI. Por exemplo, a ação de controlador no nosso `UserController` responderia a URI `users/admin-profile` da seguinte forma:
 
 	public function getAdminProfile() {}
 
