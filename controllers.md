@@ -4,7 +4,7 @@
 - [Filtros de Controladores](#controller-filters)
 - [Controladores RESTful](#restful-controllers)
 - [Controladores de Recursos](#resource-controllers)
-- [Manipulação de Métodos Ausentes](#handling-missing-methods)
+- [Resolvendo Métodos Ausentes](#handling-missing-methods)
 
 <a name="basic-controllers"></a>
 ## Controladores Básicos
@@ -128,23 +128,25 @@ Se a ação do sue controlador contém múltiplas palavras, você pode acessar a
 	public function getAdminProfile() {}
 
 <a name="resource-controllers"></a>
-## Resource Controllers
+## Controladores de Recursos
 
-Resource controllers make it easier to build RESTful controllers around resources. For example, you may wish to create a controller that manages "photos" stored by your application. Using the `controller:make` command via the Artisan CLI and the `Route::resource` method, we can quickly create such a controller.
+Controladores de recursos tornam mais fácil para construir controladores RESTful em torno de recursos. Por exemplo, você pode desejar criar um controlador que gerencia "photos" armazenadas pelo seu aplicativo. Usando o comando `controller:make` através do Artisan CLI e o método `Route::resource`, podemos criar rapidamente tal controlador.
 
-To create the controller via the command line, execute the following command:
+Para criar o controlador via linha de comando, execute o seguinte comando:
 
 	php artisan controller:make PhotoController
 
-Now we can register a resourceful route to the controller:
+Agora podemos registar uma rota de recursos para o controlador:
 
 	Route::resource('photo', 'PhotoController');
 
 This single route declaration creates multiple routes to handle a variety of RESTful actions on the photo resource. Likewise, the generated controller will already have stubbed methods for each of these actions with notes informing you which URIs and verbs they handle.
+Esta única declaração cria múltiplas rotas para lidar com uma variedade de ações RESTful no recurso de "photos". Da mesma forma, o controlador gerado já terá métodos preparados para cada uma dessas ações com anotações informando quais URIs e verbos lidam com eles.
 
-**Actions Handled By Resource Controller**
 
-Verb      | Path                  | Action
+**Ações tratadas por Controlador de Recursos**
+
+Verso     | Caminho               | Ação
 ----------|-----------------------|--------------
 GET       | /resource             | index
 GET       | /resource/create      | create
@@ -154,23 +156,25 @@ GET       | /resource/{id}/edit   | edit
 PUT/PATCH | /resource/{id}        | update
 DELETE    | /resource/{id}        | destroy
 
-Sometimes you may only need to handle a subset of the resource actions:
+Às vezes, você só precisa lidar com um subconjunto das ações de recursos:
 
 	php artisan controller:make PhotoController --only=index,show
 
 	php artisan controller:make PhotoController --except=index
 
-And, you may also specify a subset of actions to handle on the route:
+Você também pode especificar um subconjunto de ações para lidar com a rota:
 
 	Route::resource('photo', 'PhotoController',
 					array('only' => array('index', 'show')));
 
 <a name="handling-missing-methods"></a>
-## Handling Missing Methods
+## Resolvendo Métodos Ausentes
 
 A catch-all method may be defined which will be called when no other matching method is found on a given controller. The method should be named `missingMethod`, and receives the parameter array for the request as its only argument:
 
-**Defining A Catch-All Method**
+A pega-tudo método pode ser definido, que será chamada quando nenhum outro correspondente método é encontrado em um determinado controlador. O método deve ser chamado `missingMethod`, e recebe "the parameter array for the request" como seu único argumento:
+
+**Definindo um Pega-Tudo Método**
 
 	public function missingMethod($parameters)
 	{
