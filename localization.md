@@ -8,7 +8,7 @@
 <a name="introduction"></a>
 ## Introdução
 
-A classe `Lang` provê uma forma conveniente de recuperar textos em vários idiomas, permitindo sua aplicação suportar vários idiomas de maneira muito simples.
+A classe `Lang` fornece uma forma conveniente de recuperar textos em vários idiomas, permitindo sua aplicação suportar vários idiomas de maneira muito simples.
 
 <a name="language-files"></a>
 ## Arquivos de Idiomas
