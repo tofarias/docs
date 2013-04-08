@@ -9,14 +9,14 @@
 
 Laravel torna a conexão com o banco de dados e execução de queries extremamente simples. O arquivo de configuração do banco de dados é `app/config/database.php`. Neste arquivo você pode definir todas suas conexões com o banco de dados, bem como especificar qual conexão deve ser usada como padrão. Exemplos para todos os sistemas de bancos de dados suportados estão neste arquivo.
 
-Atualmente Laravel suporta quatro tipos de sistemas de bancos de dados: MySQL, Postgres, SQLite, e SQL Server.
+Atualmente Laravel suporta quatro tipos de de bancos de dados: MySQL, Postgres, SQLite, e SQL Server.
 
 <a name="running-queries"></a>
 ## Executando Queries
 
 Depois de ter configurado a conexão com o banco de dados, você pode executar queries usando a classe `DB`.
 
-**Executando uma Query de Select**
+**Executando um Select**
 
 	$results = DB::select('select * from users where id = ?', array(1));
 
