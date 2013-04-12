@@ -144,15 +144,15 @@ Esta única declaração cria múltiplas rotas para lidar com uma variedade de a
 
 **Ações tratadas por Controller de Recursos**
 
-Verb      | Path                  | Action       | Route Name
-----------|-----------------------|--------------|---------------------
-GET       | /resource             | index        | resource.index
-GET       | /resource/create      | create       | resource.create
-POST      | /resource             | store        | resource.store
-GET       | /resource/{id}        | show         | resource.show
-GET       | /resource/{id}/edit   | edit         | resource.edit
-PUT/PATCH | /resource/{id}        | update       | resource.update
-DELETE    | /resource/{id}        | destroy      | resource.destroy
+| Verb      | Path                  | Action       | Route Name
+| ----------|-----------------------|--------------|---------------------
+| GET       | /resource             | index        | resource.index
+| GET       | /resource/create      | create       | resource.create
+| POST      | /resource             | store        | resource.store
+| GET       | /resource/{id}        | show         | resource.show
+| GET       | /resource/{id}/edit   | edit         | resource.edit
+| PUT/PATCH | /resource/{id}        | update       | resource.update
+| DELETE    | /resource/{id}        | destroy      | resource.destroy
 
 As vezes, você só precisa lidar com um subconjunto das ações de recursos:
 
