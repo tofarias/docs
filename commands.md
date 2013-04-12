@@ -1,57 +1,57 @@
 # Artisan Development
 
-- [Introduction](#introduction)
-- [Building A Command](#building-a-command)
+- [Introdução](#introduction)
+- [Criando um novo comando](#building-a-command)
 - [Registering Commands](#registering-commands)
 - [Calling Other Commands](#calling-other-commands)
 
 <a name="introduction"></a>
-## Introduction
+## Introdução
 
-In addition to the commands provided with Artisan, you may also build your own custom commands for working with your application. You may store your custom commands in the `app/commands` directory; however, you are free to choose your own storage location as long as your commands can be autoloaded based on your `composer.json` settings.
+Em complemento aos comandos padrões do Artisan, você pode criar seus próprios comandos para trabalhar na sua aplicação. Você pode salvar seus comandos na pasta `app/commands`. Entretanto, você é livre para escolher onde irá guardar desde que eles possam ser carregados baseados nas configurações do seu `composer.json`.
 
 <a name="building-a-command"></a>
-## Building A Command
+## Criando um novo comando
 
-### Generating The Class
+### Gerando uma classe
 
-To create a new command, you may use the `command:make` Artisan command, which will generate a command stub to help you get started:
+Para criar um novo comando, você deve usar o comando `command:make` do Artisan, que irá gerar um esboço do comando para ajuda-lo a começar.
 
-**Generate A New Command Class**
+**Gerando uma nova classe de comando**
 
 	php artisan command:make FooCommand
 
-By default, generated commands will be stored in the `app/commands` directory; however, you may specify custom path or namespace:
+Por padrão, os comandos criados serão salvos na pasta `app/commands`; No entanto, você pode especificar um caminho diferente ou um namespace:
 
 	php artisan command:make FooCommand --path="app/classes" --namespace="Classes"
 
-### Writing The Command
+### Escrevendo um comando
 
-Once your command is generated, you should fill out the `name` and `description` properties of the class, which will be used when displaying your command on the `list` screen.
+Uma vez que seu comando foi criado, você deve preencher as propriedades `name` e `description` da ckassem que serão usados para descrever o seu comando na lista de comandos na tela.
 
-The `fire` method will be called when your command is executed. You may place any command logic in this method.
+O método `fire` será chamando quando seu comando for executado. Você deve clocar toda a lógica de comando nesse método.
 
-### Arguments & Options
+### Argumentos e Opções
 
-The `getArguments` and `getOptions` methods are where you may define any arguments or options your command receives. Both of these methods return an array of commands, which are described by a list of array options.
+Os métodos `getArguments` e `getOptions` são onde você pode definir qualquer argumento ou opção que seu comando receberá. Ambos os métodos retornam uma array de comandos, que são descritos por uma lista de array de opções.
 
-When defining `arguments`, the array definition values represent the following:
+Ao definir os `arguments`,  os valores da array de definições são representados da seguinte forma:
 
 	array($name, $mode, $description, $defaultValue)
 
-The argument `mode` may be any of the following: `InputArgument::REQUIRED` or `InputArgument::OPTIONAL`.
+O argumento `mode` pode ser qualquer um desses: `InputArgument::REQUIRED` ou `InputArgument::OPTIONAL`.
 
-When defining `options`, the array definition values represent the following:
+Ao definir `options`, os valores da array de definições são representados da seguinte forma:
 
 	array($name, $shortcut, $mode, $description, $defaultValue)
 
-For options, the argument `mode` may be: `InputOption::VALUE_REQUIRED`, `InputOption::VALUE_OPTIONAL`, `InputOption::VALUE_IS_ARRAY`, `InputOption::VALUE_NONE`.
+Para as opções, o argumento `mode` pode ser: `InputOption::VALUE_REQUIRED`, `InputOption::VALUE_OPTIONAL`, `InputOption::VALUE_IS_ARRAY` ou `InputOption::VALUE_NONE`.
 
-The `VALUE_IS_ARRAY` mode indicates that the switch may be used multiple times when calling the command:
+O modo `VALUE_IS_ARRAY` indica que a chave pode ser usada várias vezes quando o comando for chamado:
 
 	php artisan foo --option=bar --option=baz
 
-The `VALUE_NONE` option indicates that the option is simply used as a "switch":
+A opção `VALUE_NONE` indica que a opção é simplesmente usada como uma chave.
 
 	php artisan foo --option
 
