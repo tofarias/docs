@@ -40,6 +40,8 @@ Laravel requer um conjunto de permissões a ser configurado - pastas dentro de a
 
 Vários dos caminhos de diretório do framework são configuráveis. Para mudar o local destes diretórios, confira o arquivo `bootstrap/paths.php`.
 
+** Nota ** Laravel é projetado para proteger seu código de aplicação e armazenamento local, colocando apenas os arquivos que são necessariamente públicos na pasta `public`. É recomendado que você defina a pasta `public` como raiz do seu site (também conhecido como web root) ou colocar o conteúdo público na pasta raiz do site e coloque todos os outros arquivos Laravel fora da raíz do seu web root.
+
 <a name="pretty-urls"></a>
 ## URLs amigáveis
 
@@ -48,7 +50,7 @@ O framework vem com o arquivo `public/.htaccess` que é utilizado para permitir 
 Se o arquivo `.htaccess` que vem com o Laravel não funcionar com sua instalação do Apache, tente este outro:
 
 	Options +FollowSymLinks
-	RewriteEngine on
+	RewriteEngine On
 
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d

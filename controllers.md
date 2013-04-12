@@ -142,18 +142,17 @@ Agora podemos registar uma rota de recursos para o Controller:
 
 Esta única declaração cria múltiplas rotas para lidar com uma variedade de ações RESTful no recurso de "photos". Da mesma forma, o Controller gerado já terá métodos preparados para cada uma dessas ações com anotações informando quais URIs e verbos lidam com eles.
 
-
 **Ações tratadas por Controller de Recursos**
 
-Verso     | Caminho               | Action
-----------|-----------------------|--------------
-GET       | /resource             | index
-GET       | /resource/create      | create
-POST      | /resource             | store
-GET       | /resource/{id}        | show
-GET       | /resource/{id}/edit   | edit
-PUT/PATCH | /resource/{id}        | update
-DELETE    | /resource/{id}        | destroy
+Verb      | Path                  | Action       | Route Name
+----------|-----------------------|--------------|---------------------
+GET       | /resource             | index        | resource.index
+GET       | /resource/create      | create       | resource.create
+POST      | /resource             | store        | resource.store
+GET       | /resource/{id}        | show         | resource.show
+GET       | /resource/{id}/edit   | edit         | resource.edit
+PUT/PATCH | /resource/{id}        | update       | resource.update
+DELETE    | /resource/{id}        | destroy      | resource.destroy
 
 As vezes, você só precisa lidar com um subconjunto das ações de recursos:
 
