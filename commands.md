@@ -55,81 +55,82 @@ A opção `VALUE_NONE` indica que a opção é simplesmente usada como uma chave
 
 	php artisan foo --option
 
-### Retrieving Input
+### Recuperando Entrada
 
-While your command is executing, you will obviously need to access the values for the arguments and options accepted by your application. To do so, you may use the `argument` and `option` methods:
+Em quanto o comando esta sendo execultado, obviamente você vai precisar ter acesso aos valores de argumentos e opções aceitas pela sua aplicação. Para isso, você pode usar os metodos `argument` e `option`.
 
-**Retrieving The Value Of A Command Argument**
+**Recuperando Os valores com Comando Argument**
 
 	$value = $this->argument('name');
 
-**Retrieving All Arguments**
+**Recuperando Todos valores do Argument**
 
 	$arguments = $this->argument();
 
-**Retrieving The Value Of A Command Option**
+**Recuperando Os valores com Comando Option**
 
 	$value = $this->option('name');
 
-**Retrieving All Options**
+**Recuperando Todos valores do Option**
 
 	$options = $this->option();
 
 ### Writing Output
 
-To send output to the console, you may use the `info`, `comment`, `question` and `error` methods. Each of these methods will use the appropriate ANSI colors for their purpose.
+Para enviat uma saida ao console, você pode usar os metodos `info`, `comment`, `question` e `error`. Cada um desses metodos vai usar usar as cores ANSI apropiadas para seu propósito.
 
-**Sending Information To The Console**
+**Enviando Informações para o Console**
 
-	$this->info('Display this on the screen');
+	$this->info('Exibe isto na tela');
 
-**Sending An Error Message To The Console**
+**Enviando uma mensagem de Erro para o console**
 
-	$this->error('Something went wrong!');
+	$this->error('Algo deu errado!');
 
-### Asking Questions
+### Fazendo perguntas
 
-You may also use the `ask` and `confirm` methods to prompt the user for input:
+Você também pode usar os metodos `ask` e `confirm` para solicitar uma entrada do usuario como:
 
-**Asking The User For Input**
+**Perguntar algo ao usuário**
 
-	$name = $this->ask('What is your name?');
+	$name = $this->ask('Qual o seu nome ?');
 
-**Asking The User For Secret Input**
+**Perguntaro a senha do usuário**
 
-	$password = $this->secret('What is the password?');
+	$password = $this->secret('Qual a sua senha ?');
 
-**Asking The User For Confirmation**
+**Pedir confirmação ao usuário**
 
-	if ($this->confirm('Do you wish to continue? [yes|no]'))
+	if ($this->confirm('Você deseja continuar ? [yes|no]'))
 	{
 		//
 	}
 
-You may also specify a default value to the `confirm` method, which should be `true` or `false`:
+Você também pode especificar um valor padrão para o metodo `confirm`, 
+You may also specify a default value to the `confirm` method, que deve ser `true` ou `false`:
 
 	$this->confirm($question, true);
 
 <a name="registering-commands"></a>
-## Registering Commands
+## Registrando comandos
 
-Once your command is finished, you need to register it with Artisan so it will be available for use. This is typically done in the `app/start/artisan.php` file. Within this file, you may use the `Artisan::add` method to register the command:
+Uma vez que seu comando esta finalizado, você precisa registrar com Artisan como o mesmo estara disponível para o usuário. Isto é geralmente feito no arquivo `app/start/artisan.php`. Dentro deste arquivo, você pode usar o metodo `Artisan::add` para registrar o comando:
 
-**Registering An Artisan Command**
+**Registrando um comando Artisan**
 
-	Artisan::add(new CustomCommand);
+	Artisan::add(novo comando personalizado);
 
-If your command is registered in the application [IoC container](/docs/ioc), you may use the `Artisan::resolve` method to make it available to Artisan:
+Se seu comando esta registrado na aplicação [IoC container](/docs/ioc), você pode usar o metodos `Artisan::resolve` para torná-lo disponível no Artisan:
 
-**Registering A Command That Is In The IoC Container**
+**Registrando um comando que esta no IoC Container**
 
 	Artisan::resolve('binding.name');
 
 <a name="calling-other-commands"></a>
-## Calling Other Commands
+## Chamando outros comandos
 
-Sometimes you may wish to call other commands from your command. You may do so using the `call` method:
+Em algum momento você pode querer chamar outros comando com o seu. Você pode fazer isso usando o metodo `call`:
 
-**Calling Another Command**
+**Chamando outho comando**
 
 	$this->call('command.name', array('argument' => 'foo', '--option' => 'bar'));
