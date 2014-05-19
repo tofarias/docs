@@ -56,7 +56,7 @@ Uma vez com o model definido, você esta pronto para começar a recuperar e cria
 
 	var_dump($user->name);
 
-> **Note:** Todos metodos dsponíveis em [query builder](queries) estão tabém dsponíveis quando consultar Eloquent models.
+> **Note:** Todos metodos dsponíveis em [query builder](/docs/queries) estão tabém dsponíveis quando consultar Eloquent models.
 
 **Retrieving A Model By Primary Key Or Throw An Exception**
 
