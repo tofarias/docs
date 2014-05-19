@@ -2,8 +2,8 @@
 
 - [Introdução](#introduction)
 - [Criando um novo comando](#building-a-command)
-- [Registering Commands](#registering-commands)
-- [Calling Other Commands](#calling-other-commands)
+- [Registrando Comandos](#registering-commands)
+- [Chamando Outros Comandos](#calling-other-commands)
 
 <a name="introduction"></a>
 ## Introdução
