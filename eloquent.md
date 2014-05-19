@@ -1,38 +1,38 @@
 # Eloquent ORM
 
-- [Introduction](#introduction)
-- [Basic Usage](#basic-usage)
+- [Introdução](#introduction)
+- [Utilização Básica](#basic-usage)
 - [Mass Assignment](#mass-assignment)
 - [Insert, Update, Delete](#insert-update-delete)
 - [Timestamps](#timestamps)
 - [Query Scopes](#query-scopes)
-- [Relationships](#relationships)
+- [Relacionamentos](#relationships)
 - [Eager Loading](#eager-loading)
-- [Inserting Related Models](#inserting-related-models)
+- [Inserindo Models Relacionados](#inserting-related-models)
 - [Touching Parent Timestamps](#touching-parent-timestamps)
-- [Working With Pivot Tables](#working-with-pivot-tables)
-- [Collections](#collections)
+- [Trabalhando com Tabelas Dinâmicas](#working-with-pivot-tables)
+- [Coleções](#collections)
 - [Accessors & Mutators](#accessors-and-mutators)
-- [Model Events](#model-events)
-- [Converting To Arrays / JSON](#converting-to-arrays-or-json)
+- [Eventos de Model](#model-events)
+- [Convertendo Arrays / JSON](#converting-to-arrays-or-json)
 
 <a name="introduction"></a>
-## Introduction
+## Introdução
 
-The Eloquent ORM included with Laravel provides a beautiful, simple ActiveRecord implementation for working with your database. Each database table has a corresponding "Model" which is used to interact with that table.
+O Eloquente ORM incluído com Laravel proporciona uma bela, simples implementação ActiveRecord para trabalhar com seu banco de dados. Cada tabela de banco de dados tem um "Model" correspondente, que é usado para interagir com suas respectivas tabelas.
 
-Before getting started, be sure to configure a database connection in `app/config/database.php`.
+Antes de começar, sera necessário configurar um banco de dados em `app/config/database.php`.
 
 <a name="basic-usage"></a>
-## Basic Usage
+## Utilização Básica
 
-To get started, create an Eloquent model. Models typically live in the `app/models` directory, but you are free to place them anywhere that can be auto-loaded according to your `composer.json` file.
+Para começar, crie um Eloquent model. Models geralmente encontram - se no diretório `app/models`, mas você é livre para colocá-los em qualquer lugar que pode ser carregado automaticamente de acordo com seu arquivo `composer.json`.
 
-**Defining An Eloquent Model**
+**Definindo um Eloquent Model**
 
 	class User extends Eloquent {}
 
-Note that we did not tell Eloquent which table to use for our `User` model. The lower-case, plural name of the class will be used as the table name unless another name is explicitly specified. So, in this case, Eloquent will assume the `User` model stores records in the `users` table. You may specify a custom table by defining a `table` property on your model:
+Note que não disse ao Eloquent que tabela a ser usada em nosso model `User`. O nome da classe será usado como o nome da tabela em letras minúsculas, a menos que um outro nome seja especificado. Assim, neste caso, Eloquent assumirá o `User` como `users`. Você pode especificar uma tabela personalizada, defina uma propriedade `tabela` em seu model:
 
 	class User extends Eloquent {
 
@@ -40,23 +40,23 @@ Note that we did not tell Eloquent which table to use for our `User` model. The 
 
 	}
 
-Eloquent will also assume each table has a primary key column named `id`. You may define a `primaryKey` property to override this convention. Likewise, you may define a `connection` property to override the name of the database connection that should be used when utilizing the model.
+Eloquent também assumira que cada tabela tem uma coluna `primary key` de nome `id`. Você pode definir uma propriedade `primaryKey` para substituir esta convencional. Do mesmo modo, você pode definir uma propriedade `connection` para substituir o nome do banco de dados que deve ser utilizado quando se utilizar o model.
 
-> **Note:** Eloquent will also assume that each table has a primary key column named `id`. You may define a `primaryKey` property to override this convention:
+> **Note:** Eloquent também assume que cada tabela tem uma coluna primary key nomeada `id`. Você pode definir uma propriedade `primaryKey` para substituir esta convencional.
 
-Once a model is defined, you are ready to start retrieving and creating records in your table. Note that you will need to place `updated_at` and `created_at` columns on your table by default. If you do not wish to have these columns automatically maintained, set the `$timestamps` property on your model to `false`.
+Uma vez com o model definido, você esta pronto para começar a recuperar e criar registros em sua tabela. Note que você precisará colocar as colunas `updated_at` e `created_at` em sua tabela por padrão. Se você não quiser ter estas colunas automaticas mantidas, defina a propriedade `$timestamps` em seu model como `false`.
 
-**Retrieving All Models**
+**Recuperando Todos Models**
 
 	$users = User::all();
 
-**Retrieving A Record By Primary Key**
+**Recuperando Um Registro pela Chave Primária**
 
 	$user = User::find(1);
 
 	var_dump($user->name);
 
-> **Note:** All methods available on the [query builder](/docs/queries) are also available when querying Eloquent models.
+> **Note:** Todos metodos dsponíveis em [query builder](/docs/queries) estão tabém dsponíveis quando consultar Eloquent models.
 
 **Retrieving A Model By Primary Key Or Throw An Exception**
 
