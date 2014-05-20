@@ -58,13 +58,13 @@ Uma vez com o model definido, você esta pronto para começar a recuperar e cria
 
 > **Note:** Todos metodos dsponíveis em [query builder](/docs/queries) estão tabém dsponíveis quando consultar Eloquent models.
 
-**Retrieving A Model By Primary Key Or Throw An Exception**
+**Recuperando um Model através da Chave Primária ou Lançar uma Exceção**
 
-Sometimes you may wish to throw an exception if a model is not found, allowing you to catch the exceptions using an `App::error` handler and display a 404 page.
+Algumas vezes você pode desejar lançar uma exceção se um model não for encontrado, permitindo você capturar as exceções usando um `App::error` manipular e exibir um página 404.
 
 	$model = User::findOrFail(1);
 
-To register the error handler, listen for the `ModelNotFoundException`
+Para registrar o manipulador de erro, chame `ModelNotFoundException`
 
 	use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -73,7 +73,7 @@ To register the error handler, listen for the `ModelNotFoundException`
 		return Response::make('Not Found', 404);
 	});
 
-**Querying Using Eloquent Models**
+**Consulta Usando Eloquent Models**
 
 	$users = User::where('votes', '>', 100)->take(10)->get();
 
@@ -82,22 +82,22 @@ To register the error handler, listen for the `ModelNotFoundException`
 		var_dump($user->name);
 	}
 
-Of course, you may also use the query builder aggregate functions.
+Claro, você pode também usar a construção de consultas a funções aggregates.
 
 **Eloquent Aggregates**
 
 	$count = User::where('votes', '>', 100)->count();
 
 <a name="mass-assignment"></a>
-## Mass Assignment
+## Atribuição em massa
 
-When creating a new model, you pass an array of attributes to the model constructor. These attributes are then assigned to the model via mass-assignment. This is convenient; however, can be a **serious** security concern when blindly passing user input into a model. If user input is blindly passed into a model, the user is free to modify **any** and **all** of the model's attributes. For this reason, all Eloquent models protect against mass-assignment by default.
+Quando criamos um novo model, you passa um array de atributos para o construtor do model. Estes atributos são atribuidos ao model via mass-assignment. Isto é conveniente; contudo, pode ser um **sério** problema de segurança quando simplesmente passamos a entrada de usuário diretamente no model. Se entrada de usuário é simplesmente diretamente em um model, o usuário se torna livre para modificar **qualquer** e **todos** atributos do model. Por esta razão, todos models Eloquent por padrão são protegidas contra mass-assignment (atribuição em massa).
 
-To get started, set the `fillable` or `guarded` properties on your model.
+Para começar, defina as propriedades `fillable` ou `guarded` em seus model.
 
-The `fillable` property specifies which attributes should be mass-assignable. This can be set at the class or instance level.
+A propriedade `fillable` especifica que os atributos devem ser mass-assignable (nesse caso aceitar atribuição em massa). Isso pode ser definido a nível de classe ou instacia.
 
-**Defining Fillable Attributes On A Model**
+**Definindo Atributos Fillable em Um Model**
 
 	class User extends Eloquent {
 
@@ -105,7 +105,7 @@ The `fillable` property specifies which attributes should be mass-assignable. Th
 
 	}
 
-In this example, only the three listed attributes will be mass-assignable.
+Neste exemplox' apenas três atributos serão listados como mass-assignable.
 
 The inverse of `fillable` is `guarded`, and serves as a "black-list" instead of a "white-list":
 
