@@ -105,11 +105,11 @@ A propriedade `fillable` especifica que os atributos devem ser mass-assignable (
 
 	}
 
-Neste exemplox' apenas três atributos serão listados como mass-assignable.
+Neste exemplo' apenas três atributos serão listados como mass-assignable.
 
-The inverse of `fillable` is `guarded`, and serves as a "black-list" instead of a "white-list":
+O inverso de `fillable` é `guarded`, e serve como uma "lista-negra" em vez de um "lista-branca":
 
-**Defining Guarded Attributes On A Model**
+**Definindo Atributos Guarded em Um Model**
 
 	class User extends Eloquent {
 
@@ -117,18 +117,18 @@ The inverse of `fillable` is `guarded`, and serves as a "black-list" instead of 
 
 	}
 
-In the example above, the `id` and `password` attributes may **not** be mass assigned. All other attributes will be mass assignable. You may also block **all** attributes from mass assignment using the guard method:
+No exemplo acima, os atributos `id` e `password` não podem ser "atribuidos em massa". Todos outros (ou seja não expecificado com $guarded) poderão ser "atribuidos em massa". Você também pode bloquar todos os atributos de atribuição em massa usando o metodo guard:
 
-**Blocking All Attributes From Mass Assignment**
+**Bloqueando Todos Atributos de Atribuição em massa**
 
 	protected $guarded = array('*');
 
 <a name="insert-update-delete"></a>
 ## Insert, Update, Delete
 
-To create a new record in the database from a model, simply create a new model instance and call the `save` method.
+Para criar um novo registro a partir de um model, basta criar uma nova instancia do model e chamar o metodo `save`.
 
-**Saving A New Model**
+**SSalvando Um Novo Model**
 
 	$user = new User;
 
@@ -136,11 +136,11 @@ To create a new record in the database from a model, simply create a new model i
 
 	$user->save();
 
-> **Note:** Typically, your Eloquent models will have auto-incrementing keys. However, if you wish to specify your own keys, set the `incrementing` property on your model to `false`.
+> **Note:** Geralmente, seu model Eloquent terá chaves auto incrementadas. Contudo, se você deseja especificar sua própria chave, defina a propriedade `incrementing` do seu model como `false`.
 
-You may also use the `create` method to save a new model in a single line. The inserted model instance will be returned to you from the method. However, before doing so, you will need to specify either a `fillable` or `guarded` attribute on the model, as all Eloquent models protect against mass-assignment.
+Você também pode usar o metodo `create` para salvar um model em uma única linha. O model inserido sera retornado para você a partir do metodo. Contudo, antes de fazer isso, você vai precisar expecíficar ou um atributo `fillable` ou `guarded` no model, como todos models Eloquent protegidos contra mass-assignment (atribuição em massa).
 
-**Setting The Guarded Attributes On The Model**
+**Definindo O Atributo Guarded no model**
 
 	class User extends Eloquent {
 
@@ -148,13 +148,13 @@ You may also use the `create` method to save a new model in a single line. The i
 
 	}
 
-**Using The Model Create Method**
+**Usando o Metodo Create no model**
 
 	$user = User::create(array('name' => 'John'));
 
-To update a model, you may retrieve it, change an attribute, and use the `save` method:
+Para atualizar um model, você pode recuperá - lo, alterar um atributo, e usar o metodo `save`:
 
-**Updating A Retrieved Model**
+**Atualizando Um Model Recuperado**
 
 	$user = User::find(1);
 
@@ -162,7 +162,7 @@ To update a model, you may retrieve it, change an attribute, and use the `save` 
 
 	$user->save();
 
-You may also run updates as queries against a set of models:
+Você também pode execultar atualizações como consultas em conjuntos do model:
 
 	$affectedRows = User::where('votes', '>', 100)->update(array('status' => 2));
 
