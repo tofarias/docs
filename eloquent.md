@@ -1,38 +1,38 @@
 # Eloquent ORM
 
-- [Introduction](#introduction)
-- [Basic Usage](#basic-usage)
+- [Introdução](#introduction)
+- [Utilização Básica](#basic-usage)
 - [Mass Assignment](#mass-assignment)
 - [Insert, Update, Delete](#insert-update-delete)
 - [Timestamps](#timestamps)
 - [Query Scopes](#query-scopes)
-- [Relationships](#relationships)
+- [Relacionamentos](#relationships)
 - [Eager Loading](#eager-loading)
-- [Inserting Related Models](#inserting-related-models)
+- [Inserindo Models Relacionados](#inserting-related-models)
 - [Touching Parent Timestamps](#touching-parent-timestamps)
-- [Working With Pivot Tables](#working-with-pivot-tables)
-- [Collections](#collections)
+- [Trabalhando com Tabelas Dinâmicas](#working-with-pivot-tables)
+- [Coleções](#collections)
 - [Accessors & Mutators](#accessors-and-mutators)
-- [Model Events](#model-events)
-- [Converting To Arrays / JSON](#converting-to-arrays-or-json)
+- [Eventos de Model](#model-events)
+- [Convertendo Arrays / JSON](#converting-to-arrays-or-json)
 
 <a name="introduction"></a>
-## Introduction
+## Introdução
 
-The Eloquent ORM included with Laravel provides a beautiful, simple ActiveRecord implementation for working with your database. Each database table has a corresponding "Model" which is used to interact with that table.
+O Eloquente ORM incluído com Laravel proporciona uma bela, simples implementação ActiveRecord para trabalhar com seu banco de dados. Cada tabela de banco de dados tem um "Model" correspondente, que é usado para interagir com suas respectivas tabelas.
 
-Before getting started, be sure to configure a database connection in `app/config/database.php`.
+Antes de começar, sera necessário configurar um banco de dados em `app/config/database.php`.
 
 <a name="basic-usage"></a>
-## Basic Usage
+## Utilização Básica
 
-To get started, create an Eloquent model. Models typically live in the `app/models` directory, but you are free to place them anywhere that can be auto-loaded according to your `composer.json` file.
+Para começar, crie um Eloquent model. Models geralmente encontram - se no diretório `app/models`, mas você é livre para colocá-los em qualquer lugar que pode ser carregado automaticamente de acordo com seu arquivo `composer.json`.
 
-**Defining An Eloquent Model**
+**Definindo um Eloquent Model**
 
 	class User extends Eloquent {}
 
-Note that we did not tell Eloquent which table to use for our `User` model. The lower-case, plural name of the class will be used as the table name unless another name is explicitly specified. So, in this case, Eloquent will assume the `User` model stores records in the `users` table. You may specify a custom table by defining a `table` property on your model:
+Note que não disse ao Eloquent que tabela a ser usada em nosso model `User`. O nome da classe será usado como o nome da tabela em letras minúsculas, a menos que um outro nome seja especificado. Assim, neste caso, Eloquent assumirá o `User` como `users`. Você pode especificar uma tabela personalizada, defina uma propriedade `tabela` em seu model:
 
 	class User extends Eloquent {
 
@@ -40,31 +40,31 @@ Note that we did not tell Eloquent which table to use for our `User` model. The 
 
 	}
 
-Eloquent will also assume each table has a primary key column named `id`. You may define a `primaryKey` property to override this convention. Likewise, you may define a `connection` property to override the name of the database connection that should be used when utilizing the model.
+Eloquent também assumira que cada tabela tem uma coluna `primary key` de nome `id`. Você pode definir uma propriedade `primaryKey` para substituir esta convencional. Do mesmo modo, você pode definir uma propriedade `connection` para substituir o nome do banco de dados que deve ser utilizado quando se utilizar o model.
 
-> **Note:** Eloquent will also assume that each table has a primary key column named `id`. You may define a `primaryKey` property to override this convention:
+> **Note:** Eloquent também assume que cada tabela tem uma coluna primary key nomeada `id`. Você pode definir uma propriedade `primaryKey` para substituir esta convencional.
 
-Once a model is defined, you are ready to start retrieving and creating records in your table. Note that you will need to place `updated_at` and `created_at` columns on your table by default. If you do not wish to have these columns automatically maintained, set the `$timestamps` property on your model to `false`.
+Uma vez com o model definido, você esta pronto para começar a recuperar e criar registros em sua tabela. Note que você precisará colocar as colunas `updated_at` e `created_at` em sua tabela por padrão. Se você não quiser ter estas colunas automaticas mantidas, defina a propriedade `$timestamps` em seu model como `false`.
 
-**Retrieving All Models**
+**Recuperando Todos Models**
 
 	$users = User::all();
 
-**Retrieving A Record By Primary Key**
+**Recuperando Um Registro pela Chave Primária**
 
 	$user = User::find(1);
 
 	var_dump($user->name);
 
-> **Note:** All methods available on the [query builder](/docs/queries) are also available when querying Eloquent models.
+> **Note:** Todos metodos dsponíveis em [query builder](/docs/queries) estão tabém dsponíveis quando consultar Eloquent models.
 
-**Retrieving A Model By Primary Key Or Throw An Exception**
+**Recuperando um Model através da Chave Primária ou Lançar uma Exceção**
 
-Sometimes you may wish to throw an exception if a model is not found, allowing you to catch the exceptions using an `App::error` handler and display a 404 page.
+Algumas vezes você pode desejar lançar uma exceção se um model não for encontrado, permitindo você capturar as exceções usando um `App::error` manipular e exibir um página 404.
 
 	$model = User::findOrFail(1);
 
-To register the error handler, listen for the `ModelNotFoundException`
+Para registrar o manipulador de erro, chame `ModelNotFoundException`
 
 	use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -73,7 +73,7 @@ To register the error handler, listen for the `ModelNotFoundException`
 		return Response::make('Not Found', 404);
 	});
 
-**Querying Using Eloquent Models**
+**Consulta Usando Eloquent Models**
 
 	$users = User::where('votes', '>', 100)->take(10)->get();
 
@@ -82,22 +82,22 @@ To register the error handler, listen for the `ModelNotFoundException`
 		var_dump($user->name);
 	}
 
-Of course, you may also use the query builder aggregate functions.
+Claro, você pode também usar a construção de consultas a funções aggregates.
 
 **Eloquent Aggregates**
 
 	$count = User::where('votes', '>', 100)->count();
 
 <a name="mass-assignment"></a>
-## Mass Assignment
+## Atribuição em massa
 
-When creating a new model, you pass an array of attributes to the model constructor. These attributes are then assigned to the model via mass-assignment. This is convenient; however, can be a **serious** security concern when blindly passing user input into a model. If user input is blindly passed into a model, the user is free to modify **any** and **all** of the model's attributes. For this reason, all Eloquent models protect against mass-assignment by default.
+Quando criamos um novo model, you passa um array de atributos para o construtor do model. Estes atributos são atribuidos ao model via mass-assignment. Isto é conveniente; contudo, pode ser um **sério** problema de segurança quando simplesmente passamos a entrada de usuário diretamente no model. Se entrada de usuário é simplesmente diretamente em um model, o usuário se torna livre para modificar **qualquer** e **todos** atributos do model. Por esta razão, todos models Eloquent por padrão são protegidas contra mass-assignment (atribuição em massa).
 
-To get started, set the `fillable` or `guarded` properties on your model.
+Para começar, defina as propriedades `fillable` ou `guarded` em seus model.
 
-The `fillable` property specifies which attributes should be mass-assignable. This can be set at the class or instance level.
+A propriedade `fillable` especifica que os atributos devem ser mass-assignable (nesse caso aceitar atribuição em massa). Isso pode ser definido a nível de classe ou instacia.
 
-**Defining Fillable Attributes On A Model**
+**Definindo Atributos Fillable em Um Model**
 
 	class User extends Eloquent {
 
@@ -105,11 +105,11 @@ The `fillable` property specifies which attributes should be mass-assignable. Th
 
 	}
 
-In this example, only the three listed attributes will be mass-assignable.
+Neste exemplo' apenas três atributos serão listados como mass-assignable.
 
-The inverse of `fillable` is `guarded`, and serves as a "black-list" instead of a "white-list":
+O inverso de `fillable` é `guarded`, e serve como uma "lista-negra" em vez de um "lista-branca":
 
-**Defining Guarded Attributes On A Model**
+**Definindo Atributos Guarded em Um Model**
 
 	class User extends Eloquent {
 
@@ -117,18 +117,18 @@ The inverse of `fillable` is `guarded`, and serves as a "black-list" instead of 
 
 	}
 
-In the example above, the `id` and `password` attributes may **not** be mass assigned. All other attributes will be mass assignable. You may also block **all** attributes from mass assignment using the guard method:
+No exemplo acima, os atributos `id` e `password` não podem ser "atribuidos em massa". Todos outros (ou seja não expecificado com $guarded) poderão ser "atribuidos em massa". Você também pode bloquar todos os atributos de atribuição em massa usando o metodo guard:
 
-**Blocking All Attributes From Mass Assignment**
+**Bloqueando Todos Atributos de Atribuição em massa**
 
 	protected $guarded = array('*');
 
 <a name="insert-update-delete"></a>
 ## Insert, Update, Delete
 
-To create a new record in the database from a model, simply create a new model instance and call the `save` method.
+Para criar um novo registro a partir de um model, basta criar uma nova instancia do model e chamar o metodo `save`.
 
-**Saving A New Model**
+**SSalvando Um Novo Model**
 
 	$user = new User;
 
@@ -136,11 +136,11 @@ To create a new record in the database from a model, simply create a new model i
 
 	$user->save();
 
-> **Note:** Typically, your Eloquent models will have auto-incrementing keys. However, if you wish to specify your own keys, set the `incrementing` property on your model to `false`.
+> **Note:** Geralmente, seu model Eloquent terá chaves auto incrementadas. Contudo, se você deseja especificar sua própria chave, defina a propriedade `incrementing` do seu model como `false`.
 
-You may also use the `create` method to save a new model in a single line. The inserted model instance will be returned to you from the method. However, before doing so, you will need to specify either a `fillable` or `guarded` attribute on the model, as all Eloquent models protect against mass-assignment.
+Você também pode usar o metodo `create` para salvar um model em uma única linha. O model inserido sera retornado para você a partir do metodo. Contudo, antes de fazer isso, você vai precisar expecíficar ou um atributo `fillable` ou `guarded` no model, como todos models Eloquent protegidos contra mass-assignment (atribuição em massa).
 
-**Setting The Guarded Attributes On The Model**
+**Definindo O Atributo Guarded no model**
 
 	class User extends Eloquent {
 
@@ -148,13 +148,13 @@ You may also use the `create` method to save a new model in a single line. The i
 
 	}
 
-**Using The Model Create Method**
+**Usando o Metodo Create no model**
 
 	$user = User::create(array('name' => 'John'));
 
-To update a model, you may retrieve it, change an attribute, and use the `save` method:
+Para atualizar um model, você pode recuperá - lo, alterar um atributo, e usar o metodo `save`:
 
-**Updating A Retrieved Model**
+**Atualizando Um Model Recuperado**
 
 	$user = User::find(1);
 
@@ -162,7 +162,7 @@ To update a model, you may retrieve it, change an attribute, and use the `save` 
 
 	$user->save();
 
-You may also run updates as queries against a set of models:
+Você também pode execultar atualizações como consultas em conjuntos do model:
 
 	$affectedRows = User::where('votes', '>', 100)->update(array('status' => 2));
 
