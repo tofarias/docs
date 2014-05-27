@@ -128,7 +128,7 @@ No exemplo acima, os atributos `id` e `password` não podem ser "atribuidos em m
 
 Para criar um novo registro a partir de um model, basta criar uma nova instancia do model e chamar o metodo `save`.
 
-**SSalvando Um Novo Model**
+**Salvando Um Novo Model**
 
 	$user = new User;
 
@@ -162,40 +162,40 @@ Para atualizar um model, você pode recuperá - lo, alterar um atributo, e usar 
 
 	$user->save();
 
-Você também pode execultar atualizações como consultas em conjuntos do model:
+Você também pode executar atualizações como consultas em conjuntos do model:
 
 	$affectedRows = User::where('votes', '>', 100)->update(array('status' => 2));
 
-To delete a model, simply call the `delete` method on the instance:
+Para deletar um modelo, simplesmente execute o método `delete` da instância do modelo:
 
-**Deleting An Existing Model**
+**Deletando um modelo existente**
 
 	$user = User::find(1);
 
 	$user->delete();
 
-**Deleting An Existing Model By Key**
+**Deletando um modelo existente através de sua chave primária**
 
 	User::destroy(1);
 
 	User::destroy(1, 2, 3);
 
-Of course, you may also run a delete query on a set of models:
+Claro que você também poderá querer deletar uma série de modelos frutos de uma consulta grande. Isso pode ser feito facilmente da mesma maneira:
 
 	$affectedRows = User::where('votes', '>', 100)->delete();
 
-If you wish to simply update the timestamps on a model, you may use the `touch` method:
+Se você quiser apenas atualizar os timestamps de um modelo, você poderá utilizar o método `touch`:
 
-**Updating Only The Model's Timestamps**
+**Atualizando apenas os timestamps de um modelo**
 
 	$user->touch();
 
 <a name="timestamps"></a>
 ## Timestamps
 
-By default, Eloquent will maintain the `created_at` and `updated_at` columns on your database table automatically. Simply add these `datetime` columns to your table and Eloquent will take care of the rest. If you do not wish for Eloquent to maintain these columns, add the following property to your model:
+Por padrão, o Eloquent irá adicionar automaticamente as colunas `created_at` e `updated_at` em seu banco de dados ou basta adicionar essas colunas e o Eloquent irá cuidar do resto. Se você preferir que o Eloquent não cuide dessas colunas, adicione a seguinte propriedade ao seu modelo:
 
-**Disabling Auto Timestamps**
+**Desabilitando os timestamps por automático**
 
 	class User extends Eloquent {
 
@@ -205,9 +205,9 @@ By default, Eloquent will maintain the `created_at` and `updated_at` columns on 
 
 	}
 
-If you wish to customize the format of your timestamps, you may override the `freshTimestamp` method in your model:
+Se você quiser personalizar o formato dos seus timestamps, basta substituir o método `freshTimestamp` no seu modelo:
 
-**Providing A Custom Timestamp Format**
+**Personalizando o formato dos timestamps de um modelo**
 
 	class User extends Eloquent {
 
