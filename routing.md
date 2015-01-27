@@ -1,6 +1,6 @@
-# Routing
+# Roteamento
 
-- [Basic Routing](#basic-routing)
+- [Roteamento Básico](#basic-routing)
 - [Route Parameters](#route-parameters)
 - [Route Filters](#route-filters)
 - [Named Routes](#named-routes)
@@ -12,39 +12,39 @@
 - [Resource Controllers](#resource-controllers)
 
 <a name="basic-routing"></a>
-## Basic Routing
+## Roteamento Básico
 
-Most of the routes for your application will be defined in the `app/routes.php` file. The simplest Laravel routes consist of a URI and a Closure callback.
+A maioria das rotas do seu projeto será definida no arquivo `app/routes.php`. As rotas mais simples do Laravel consistem de uma URI e uma Closure.
 
-**Basic GET Route**
+**Rota Basica GET**
 
 	Route::get('/', function()
 	{
 		return 'Hello World';
 	});
 
-**Basic POST Route**
+**Rota Básica POST**
 
 	Route::post('foo/bar', function()
 	{
 		return 'Hello World';
 	});
 
-**Registering A Route Responding To Any HTTP Verb**
+**Registrando Uma Rota Para Responder A Qualquer Verbo HTTP**
 
 	Route::any('foo', function()
 	{
 		return 'Hello World';
 	});
 
-**Forcing A Route To Be Served Over HTTPS**
+**Forçando Uma Rota Através do HTTPS**
 
 	Route::get('foo', array('https', function()
 	{
 		return 'Must be over HTTPS';
 	}));
 
-Often, you will need to generate URLs to your routes, you may do so using the `URL::to` method:
+Frequentemente, você precisará gerar URL para suas rotas, você pode fazê-lo usando o método `URL::to`:
 
 	$url = URL::to('foo');
 
